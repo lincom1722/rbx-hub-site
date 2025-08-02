@@ -41,9 +41,7 @@ O RBX HUB é um site de vendas de jogos Roblox com design gamer atrativo, especi
 2. **maps.html (Página de Mapas)**
    - Header com navegação
    - Grid de mapas do Roblox:
-     - Adopt Me
-     - Bloxburg
-     - Tower of Hell
+     - brainrots
    - Cada mapa redireciona para produtos com parâmetro
 
 3. **products.html (Página de Produtos)**
