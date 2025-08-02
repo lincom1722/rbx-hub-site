@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finalizar Compra - RBX HUB</title>
+    <meta name="description" content="Finalize sua compra no RBX HUB - Revise seus itens selecionados">
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="glitch-bg"></div>
+    <div class="particles"></div>
+    
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="assets/images/skull-gamer-logo.jpg" alt="RBX HUB Logo" class="logo-img">
+            </a>
+            <nav class="nav">
+                <a href="index.html" class="nav-link">INÍCIO</a>
+                <a href="maps.html" class="nav-link">MAPAS</a>
+                <a href="products.html" class="nav-link">PRODUTOS</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <h1 class="section-title glitch" data-text="FINALIZAR COMPRA">FINALIZAR COMPRA</h1>
+            
+            <div class="purchase-summary">
+                <div class="selected-info">
+                    <h3>Resumo da Compra:</h3>
+                    <p>Mapa: <span id="selected-map">Não selecionado</span></p>
+                    <p>Produto: <span id="selected-product">Não selecionado</span></p>
+                    <p style="margin-top: 20px; color: #ffff00; font-size: 1.1rem;">
+                        Status: <span style="color: #00ff00;">Pronto para finalizar</span>
+                    </p>
+                </div>
+                
+                <button class="btn btn-primary" onclick="finalizePurchase()" style="width: 100%; margin-bottom: 20px;">
+                    FINALIZAR COMPRA
+                </button>
+                
+                <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                    <a href="products.html" class="btn btn-secondary">← VOLTAR AOS PRODUTOS</a>
+                    <a href="maps.html" class="btn btn-secondary">← VOLTAR AOS MAPAS</a>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 40px;">
+                <p style="color: #cccccc; font-family: 'Courier Prime', monospace; font-size: 1rem; line-height: 1.6;">
+                    Após finalizar a compra, você receberá um ticket para atendimento personalizado.<br>
+                    Nossa equipe entrará em contato em breve para processar seu pedido.
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 RBX HUB. Todos os direitos reservados.</p>
+            <p class="disclaimer">Este site não é afiliado ao Roblox Corporation.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Carregar informações da compra
+        document.addEventListener('DOMContentLoaded', function() {
+            const params = getUrlParams();
+            
+            const mapNames = {
+                'adopt-me': 'Adopt Me',
+                'bloxburg': 'Bloxburg',
+                'tower-hell': 'Tower of Hell'
+            };
+            
+            const productNames = {
+                'items': 'Itens Raros',
+                'accounts': 'Contas Prontas',
+                'robux': 'Robux',
+                'custom': 'Personalizado'
+            };
+            
+            document.getElementById('selected-map').textContent = 
+                params.map ? mapNames[params.map] || params.map : 'Não selecionado';
+            
+            document.getElementById('selected-product').textContent = 
+                params.product ? productNames[params.product] || params.product : 'Não selecionado';
+        });
+        
+        // Função para finalizar compra
+        function finalizePurchase() {
+            const params = getUrlParams();
+            
+            if (!params.map || !params.product) {
+                showNotification('Por favor, selecione um mapa e um produto antes de finalizar a compra.', 'error');
+                return;
+            }
+            
+            // Simular processo de compra
+            showNotification('Processando sua compra...', 'info');
+            
+            // Desabilitar botão temporariamente
+            const button = event.target;
+            button.disabled = true;
+            button.textContent = 'PROCESSANDO...';
+            button.style.opacity = '0.7';
+            
+            setTimeout(() => {
+                showNotification('Compra realizada com sucesso! Você receberá um ticket para atendimento em breve.', 'success');
+                
+                // Restaurar botão
+                button.disabled = false;
+                button.textContent = 'FINALIZAR COMPRA';
+                button.style.opacity = '1';
+                
+                // Redirecionar para página inicial após 3 segundos
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 3000);
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
+
